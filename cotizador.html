@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antes de Imprimir · Cotizador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://enbrutoestudio.com.ar/cotizador.html">
+  <meta property="og:title"       content="Antes de Imprimir · Cotizador de impresión">
+  <meta property="og:description" content="Cotizá tu impresión en minutos, sin vueltas. Subí tus archivos, elegí cómo los querés imprimir y ves el precio al instante.">
+  <meta property="og:image"       content="https://enbrutoestudio.com.ar/assets/antes-de-imprimir.png">
+  <meta name="description"        content="Cotizá tu impresión en minutos, sin vueltas. Subí tus archivos, elegí cómo los querés imprimir y ves el precio al instante.">
+  <link rel="icon" type="image/png" href="assets/antes-de-imprimir.png">
+  <link rel="stylesheet" href="cotizador.css">
+</head>
+<body>
+
+  <header class="cot-header">
+    <div class="cot-header-inner">
+      <div class="cot-brand">
+        <img class="cot-brand-logo" src="assets/antes-de-imprimir.png" alt="Antes de Imprimir">
+        <span class="cot-brand-descriptor">Cotizador de impresión</span>
+      </div>
+      <div class="cot-header-actions">
+        <a class="cot-header-btn" href="https://g.page/r/CUcQ1iYytHo6EAE/review" target="_blank" rel="noopener">
+          <img class="cot-btn-icon" src="assets/icon-maps.png" alt="">
+          <span>Calificanos</span>
+        </a>
+        <a class="cot-header-btn cot-ig-btn" href="https://instagram.com/1328.copias" target="_blank" rel="noopener">
+          <img class="cot-btn-icon" src="assets/icon-instagram.png" alt="">
+          <span>Seguinos</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="cot-main">
+
+    <!-- ── STEP 1: DROP ──────────────────────────────────────── -->
+    <section id="step-upload" class="cot-step">
+      <div class="cot-upload-intro">
+        <h1 class="cot-upload-title">Cotizá tu impresión en minutos, sin vueltas.</h1>
+        <p class="cot-upload-sub">Subí tus archivos, elegí cómo los querés imprimir y vas viendo el precio al instante, en tiempo real.<br><br>Cuando ya lo tengas definido, enviás el resumen por WhatsApp y nosotros lo revisamos y confirmamos. Así de simple.</p>
+      </div>
+      <div class="cot-drop cot-drop--loading" id="cotDrop">
+        <div class="cot-drop-body">
+          <div class="cot-drop-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+          <p class="cot-drop-title">Arrastrá tus archivos aquí</p>
+          <p class="cot-drop-hint">PDF, JPG, PNG — máximo 100 MB por archivo</p>
+          <button class="cot-btn-outline" id="cotBrowse" disabled>Cargando precios…</button>
+          <input type="file" id="cotFileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" hidden>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STEP 2: OPCIONES ──────────────────────────────────── -->
+    <section id="step-files" class="cot-step" style="display:none">
+
+      <div class="cot-section-header">
+        <h2 class="cot-section-title">Opciones de impresión</h2>
+        <button class="cot-btn-outline cot-btn-sm" id="cotAddMore">+ Agregar archivos</button>
+        <input type="file" id="cotFileInputMore" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" hidden>
+      </div>
+
+      <div id="cotFileList"></div>
+
+      <!-- ── Resumen de costos ──────────────────────────────── -->
+      <div class="cot-summary-card">
+        <div class="cot-summary-rows" id="cotSummaryRows"></div>
+        <div class="cot-summary-total">
+          <span>Total estimado</span>
+          <span class="cot-total-amount" id="cotTotal">$0</span>
+        </div>
+      </div>
+
+      <!-- ── Datos de contacto ──────────────────────────────── -->
+      <div class="cot-contact-card">
+        <h2 class="cot-section-title">Tus datos</h2>
+        <div class="cot-field-row">
+          <div class="cot-field">
+            <label class="cot-label" for="cotNombre">Nombre</label>
+            <input class="cot-input" type="text" id="cotNombre" placeholder="Tu nombre completo" autocomplete="name">
+          </div>
+          <div class="cot-field">
+            <label class="cot-label" for="cotTel">WhatsApp</label>
+            <input class="cot-input" type="tel" id="cotTel" placeholder="11 XXXX XXXX" autocomplete="tel">
+          </div>
+        </div>
+        <div class="cot-field">
+          <label class="cot-label" for="cotNota">Nota adicional <span class="cot-optional">(opcional)</span></label>
+          <textarea class="cot-input cot-textarea" id="cotNota" rows="2" placeholder="Instrucciones especiales, fecha de entrega, etc."></textarea>
+        </div>
+        <div class="cot-field">
+          <label class="cot-label">Medio de pago <span class="cot-optional">(opcional)</span></label>
+          <div class="cot-pills cot-pago-pills">
+            <label class="cot-pill"><input type="radio" name="pago" value="efectivo" id="pagoEfectivo"><span>Efectivo</span></label>
+            <label class="cot-pill"><input type="radio" name="pago" value="tarjeta" id="pagoTarjeta"><span>Tarjeta</span></label>
+            <label class="cot-pill"><input type="radio" name="pago" value="transferencia" id="pagoTransferencia"><span>Transferencia</span></label>
+          </div>
+          <div class="cot-pago-info" id="cotPagoInfo" style="display:none"></div>
+        </div>
+        <label class="cot-urgente-toggle" id="cotUrgenteLabel">
+          <input type="checkbox" id="cotUrgente">
+          <div class="cot-urgente-check"></div>
+          <div class="cot-urgente-info">
+            <span class="cot-urgente-name">Pedido urgente</span>
+            <span class="cot-urgente-desc">Procesamiento prioritario &middot; se suma el 30% al total</span>
+          </div>
+          <span class="cot-urgente-tag">+30%</span>
+        </label>
+        <button class="cot-btn-primary" id="cotSubmit">
+          <span id="cotSubmitLabel">Confirmar y generar pedido</span>
+          <div class="cot-spinner" id="cotSpinner" style="display:none"></div>
+        </button>
+        <p class="cot-submit-note" id="cotSubmitNote"></p>
+      </div>
+    </section>
+
+    <!-- ── STEP 3: ÉXITO ─────────────────────────────────────── -->
+    <section id="step-success" class="cot-step" style="display:none">
+      <div class="cot-success-card">
+
+        <div class="cot-success-top">
+          <div class="cot-success-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h2 class="cot-success-head">Listo. Tu cotización está lista.</h2>
+            <div class="cot-order-id-inline">
+              <span class="cot-order-id-label">N° de referencia</span>
+              <span class="cot-order-id" id="cotOrderId">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cot-success-notice">
+          <strong>Para confirmar tu pedido, enviá el resumen por WhatsApp.</strong>
+          <span>Sin este paso, el pedido no se procesa.</span>
+        </div>
+
+        <a class="cot-btn-wa cot-btn-wa--big" id="cotWaBtn" href="#" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Enviar por WhatsApp
+        </a>
+
+        <div class="cot-wa-confirm" id="cotWaConfirm" style="display:none">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>¡Gracias! Ya estamos en contacto. Te confirmamos a la brevedad.</span>
+        </div>
+
+        <p class="cot-success-expiry">Los archivos se eliminan en 7 días.</p>
+
+        <details class="cot-wa-preview-wrap">
+          <summary class="cot-wa-preview-toggle">Ver detalle del pedido</summary>
+          <pre class="cot-wa-preview" id="cotWaPreview"></pre>
+        </details>
+
+        <button class="cot-btn-outline cot-btn-full" id="cotNewOrder">Nueva cotización</button>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast error archivo grande -->
+  <div class="cot-toast" id="cotSizeToast" style="display:none">
+    <div class="cot-toast-body">
+      <span class="cot-toast-icon">⚠️</span>
+      <div>
+        <strong class="cot-toast-title" id="cotSizeToastTitle">Archivo demasiado grande</strong>
+        <p class="cot-toast-msg">El archivo supera 100 MB. Para cotizar, contácanos por <a class="cot-toast-wa" href="https://wa.me/5491126343647?text=Hola%21+Tengo+un+archivo+grande+para+cotizar+impresi%C3%B3n." target="_blank" rel="noopener">WhatsApp</a>.</p>
+      </div>
+      <button class="cot-toast-close" id="cotSizeToastClose">✕</button>
+    </div>
+  </div>
+
+  <!-- ── Template fila de archivo (clonado por JS) ──────────── -->
+  <template id="tpl-file-row">
+    <div class="cot-file-row" data-fileid="">
+      <div class="cot-file-head">
+        <div class="cot-file-name-wrap">
+          <svg class="cot-file-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="cot-file-name">archivo.pdf</span>
+          <span class="cot-file-badge"></span>
+        </div>
+        <button class="cot-file-remove" aria-label="Eliminar archivo">✕</button>
+      </div>
+
+      <div class="cot-progress-wrap" style="display:none"><div class="cot-progress-bar"></div></div>
+      <div class="cot-file-body">
+      <div class="cot-file-opts">
+        <div class="cot-opt-group">
+          <span class="cot-opt-label">Papel</span>
+          <div class="cot-pills">
+            <label class="cot-pill"><input type="radio" name="papel" value="obra75" checked><span>Obra 75g</span></label>
+            <label class="cot-pill"><input type="radio" name="papel" value="autoadhesivo"><span>Autoadhesivo</span></label>
+            <label class="cot-pill"><input type="radio" name="papel" value="kraft225"><span>Kraft 225g</span></label>
+          </div>
+        </div>
+        <div class="cot-opt-group">
+          <span class="cot-opt-label">Impresión</span>
+          <div class="cot-pills">
+            <label class="cot-pill"><input type="radio" name="tinta" value="mono" checked><span>Monocromo</span></label>
+            <label class="cot-pill"><input type="radio" name="tinta" value="color"><span>Color</span></label>
+          </div>
+        </div>
+        <div class="cot-opt-group">
+          <span class="cot-opt-label">Faz</span>
+          <div class="cot-pills">
+            <label class="cot-pill"><input type="radio" name="faz" value="simple" checked><span>Simple</span></label>
+            <label class="cot-pill"><input type="radio" name="faz" value="doble"><span>Doble</span></label>
+          </div>
+        </div>
+        <div class="cot-opt-group cot-opt-num">
+          <span class="cot-opt-label">Hojas</span>
+          <div class="cot-hojas-wrap">
+            <div class="cot-hojas-auto" style="display:none">
+              <strong class="cot-hojas-val">—</strong>
+              <span class="cot-hojas-pages"></span>
+            </div>
+            <input class="cot-num-input cot-hojas-manual" type="number" name="hojas" value="1" min="1" max="999">
+            <span class="cot-hojas-note" style="display:none">Verificá la cantidad de hojas</span>
+          </div>
+        </div>
+        <div class="cot-opt-group cot-opt-num">
+          <span class="cot-opt-label">Copias</span>
+          <input class="cot-num-input" type="number" name="copias" value="1" min="1" max="999">
+        </div>
+        <div class="cot-opt-group">
+          <span class="cot-opt-label">Anillado</span>
+          <label class="cot-pill cot-pill-check">
+            <input type="checkbox" name="anillado" value="si">
+            <span>Anillado</span>
+          </label>
+          <span class="cot-anillado-hint" style="display:none">Anillado sugerido</span>
+          <span class="cot-tomo-hint" style="display:none">+500 páginas: puede requerir más de un tomo</span>
+        </div>
+      </div>
+
+      <div class="cot-file-preview-col">
+        <div class="cot-thumb-wrap">
+          <canvas class="cot-thumb-canvas" style="display:none"></canvas>
+          <img class="cot-thumb-img" alt="Vista previa" style="display:none">
+          <div class="cot-thumb-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Vista previa</span>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="cot-file-foot">
+        <span class="cot-file-subtotal">$0</span>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="cotizador.js"></script>
+</body>
+</html>

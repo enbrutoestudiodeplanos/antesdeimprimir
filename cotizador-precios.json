@@ -1,0 +1,22 @@
+{
+  "papel": {
+    "obra75": {
+      "mono":  { "simple": 200,  "doble": 300 },
+      "color": { "simple": 600,  "doble": 900 }
+    },
+    "autoadhesivo": {
+      "mono":  { "simple": 2200 },
+      "color": { "simple": 2600 }
+    },
+    "kraft225": {
+      "mono":  { "simple": 500, "doble": 600 }
+    }
+  },
+  "anillado": [
+    { "hasta": 30,  "precio": 2000 },
+    { "hasta": 50,  "precio": 2400 },
+    { "hasta": 100, "precio": 3400 },
+    { "hasta": 200, "precio": 4000 },
+    { "hasta": 300, "precio": 5200 }
+  ]
+}
